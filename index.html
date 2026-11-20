@@ -90,7 +90,10 @@
 
 <footer><b style="color:var(--ink)">POSITIVE YOUNG MINDS</b> • Strong Minds. Bright Futures. • © <span id="year"></span> Positive Young Minds • Johannesburg, Gauteng • POPIA compliant demo.</footer>
 </div><div class="toast" id="toast"></div>
-<script>
+</html>
+<script src="assets/js/shared.js"></script><script src="assets/js/app.js"></script><script>
+headerAuth(); try{renderOpps();}catch(e){}
+document.getElementById("year").textContent=new Date().getFullYear();
 async function doLogin(){
   const e=document.getElementById("liEmail")?.value, pw=document.getElementById("liPass")?.value;
   const msg=document.getElementById("loginMsg");
@@ -99,9 +102,7 @@ async function doLogin(){
   if(msg) msg.textContent = r.ok ? "✅ Welcome, "+r.user.name+" — redirecting..." : r.msg;
   if(r.ok) setTimeout(()=>location.href = r.user.role==="Admin" ? "admin.html" : "dashboard.html", 600);
 }
-// Fix Create Account: hash password, never store plaintext
-const _oldRegister = window.registerAccount;
-async function registerAccount(){
+async function doRegister(){
   const email=(document.getElementById("rEmail")?.value||"").trim().toLowerCase();
   const pass=document.getElementById("rPass")?.value||"";
   const first=document.getElementById("rFirst")?.value||"", last=document.getElementById("rLast")?.value||"";
@@ -115,4 +116,5 @@ async function registerAccount(){
   toast("✅ Account created — please login now.");
   const li=document.getElementById("liEmail"); if(li) li.value=email;
 }
+async function registerAccount(){ return doRegister(); }
 </script></body></html>
