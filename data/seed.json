@@ -1,0 +1,9 @@
+{
+  "note": "Seed in js/store.js",
+  "users": [
+    "admin (Admin)",
+    "youth (Youth)",
+    "provider (Provider)"
+  ],
+  "opps": 5
+}

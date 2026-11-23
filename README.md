@@ -1,23 +1,28 @@
-# Positive Young Minds — Premium Refinement (Same Site, Elevated Design)
+# Positive Young Minds — Professional Folder (Same Site, Proper Structure)
 
-## What changed (design only, functionality preserved)
-- Same pages, same features, same brand colours (#22293A, #E84393, #FFF9F2, #58B368, #2D9CDB, #00A9A5, #FF7A29) — used with intention, not everywhere at once.
-- Premium design system: editorial hero, split layouts, alternating backgrounds, pillars, distinct programme cards, proper opportunity cards, event date blocks, polished forms, hover/focus states, consistent spacing/shadows/radii.
-- Pages, not endless scroll: Home / About / Programmes / Leadership / Opportunities / Volunteer / Events / Gallery / Contact / Login — each is its own page view, with active nav state and 'You are on:' indicator.
-- Responsive: desktop, laptop, tablet, mobile — no horizontal overflow, mobile nav collapses, grids stack.
-- Security (Section 11): NO passwords are printed on the public site or in the public code. Auth uses SHA-256 hashes only. Demo accounts still work — use the private credentials provided separately (NOT in this repo). Do NOT upload any file containing passwords to GitHub.
-- No backend introduced — GitHub Pages compatible. Data is stored in this browser (localStorage) for demonstration. For true production, auth + applications must move to a server + database (Node/.NET + Postgres/SQL Server, bcrypt + salt, server sessions, email verification, 2FA for Admin, server-side lockout, backups, POPIA).
+## Structure
+- index.html — Home
+- pages/ — about, programmes, leadership, opportunities, volunteer, events, gallery, contact, login, register
+- dashboards/ — youth.html, provider.html, admin.html (each role, guarded)
+- css/ — main.css, dashboards.css, auth.css
+- js/ — utils.js, store.js, auth.js, opportunities.js, applications.js, dashboards.js, main.js
+- data/seed.json — seed shape
+- assets/img/logo.jpg — real PYM logo
+- docs/ — TESTING-MATRIX.md
 
-## Files to upload to GitHub
-- index.html (whole site — all CSS + JS inline, cannot break from missing shared.js)
-- assets/img/logo.jpg (real PYM logo)
-- README.md (this file)
-DO NOT upload any file containing passwords.
+## Roles (existing demo accounts, passwords NOT in public code — hashes only)
+- Youth, Provider, Admin. Volunteer is a Youth action (volunteer application), not a separate login role — see TESTING-MATRIX.
+- Login redirects: Youth→dashboards/youth.html, Provider→dashboards/provider.html, Admin→dashboards/admin.html
+- Guards: requireRole() in js/auth.js — wrong role is bounced to their own dashboard, no login is bounced to login.html with a message.
+- Logout clears sessionStorage and returns to Home. Refresh does NOT leak previous user's data — dashboards re-check role on every load.
+
+## Security / Real-world readiness
+- NO plaintext passwords in public code or pages. SHA-256 hashes only (demo). For production: server + DB + bcrypt + salt + server sessions + email verification + 2FA for Admin + POPIA.
+- Data is localStorage in THIS browser only — NOT synced across devices. Do not claim central storage.
+- Do NOT upload any file containing passwords. Private credentials are in PRIVATE-CREDENTIALS-DO-NOT-UPLOAD.txt — keep on laptop only.
+
+## Deploy to GitHub Pages
+Upload EVERYTHING in this folder (all subfolders) to the repo root, overwrite old files, delete old single-file leftovers if any. Wait 1 min, hard-refresh Ctrl+Shift+R. Home is index.html at repo root.
 
 ## Real PYM details
-7 Rex Street, Roodepoort, 1724, Johannesburg | positiveyoungmindsoffice@gmail.com | 066 563 2663 | @positiveyoungminds2025 | Executive Director: Mandilakhe Cqaka | Services: Mental Health Awareness and Youth Empowerment Conferences | Always open
-
-## How to use
-1. Upload all files in this folder to GitHub repo (overwrite index.html).
-2. Wait 1 min, hard-refresh Ctrl+Shift+R.
-3. Test: Home -> About -> Opportunities (filter/search/apply) -> Login -> Dashboard -> Provider submit -> Admin approve -> Volunteer -> Events RSVP -> Contact -> Dark Mode.
+7 Rex Street, Roodepoort, 1724 | positiveyoungmindsoffice@gmail.com | 066 563 2663 | @positiveyoungminds2025 | Executive Director: Mandilakhe Cqaka
