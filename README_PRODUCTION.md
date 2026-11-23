@@ -1,4 +1,4 @@
-# Positive Young Minds — FINAL (Merged Task 1 + Task 2) — 100% Working Prototype
+# Positive Young Minds — FINAL (Merged Task 1 + Task 2) — 100% Working Portal
 
 ## How to use (GitHub Pages)
 1. Extract this zip.
@@ -25,11 +25,11 @@
 7 Rex Street, Roodepoort, 1724, Johannesburg | positiveyoungmindsoffice@gmail.com | 066 563 2663 | @positiveyoungminds2025 | Executive Director: Mandilakhe Cqaka | Services: Mental Health Awareness and Youth Empowerment Conferences | Always open
 
 ## What is NOT real production (honest)
-This is a browser-only prototype. Data lives in localStorage (this browser only). No email is sent, no server, no real database.
+This is a browser-only portal. Data lives in localStorage (this browser only). No email is sent, no server, no real database.
 For TRUE production you need:
 1. Backend: Node.js / .NET API + PostgreSQL / SQL Server database
 2. Auth: bcrypt + salt, server sessions / JWT, HttpOnly cookies, 2FA for Admin, server lockout, email verification, Forgot Password via email
 3. Email: SMTP / SendGrid for applications, approvals, contact form
 4. File storage: S3 / Azure Blob for CVs, virus scan, size limits
 5. Hosting: Render / Azure / Railway (not GitHub Pages), HTTPS, HSTS, backups, POPIA compliance, audit log on server
-Do NOT put real ID numbers / CVs in this prototype.
+Do NOT put real ID numbers / CVs in this portal.
