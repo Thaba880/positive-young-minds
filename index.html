@@ -57,7 +57,7 @@
 <!-- VOLUNTEER -->
 <section class="section" id="volunteer"><p class="eyebrow">Give back • Gain skills</p><h2>Become a Volunteer</h2>
 <div class="grid"><div class="card"><h3>Why volunteer?</h3><p>Build your CV, meet people, learn leadership — and change a young person’s life. You’ll get a reference number and can track your application in your dashboard.</p><ul><li>Tutoring &amp; Mentoring</li><li>Events &amp; Community Projects</li><li>Admin &amp; Digital Support</li><li>Wellness &amp; Peer Support</li></ul></div>
-<div class="card"><h3>Volunteer Application</h3><p class="muted">You must be signed in. Lab: use  → Youth, then submit.</p>
+<div class="card"><h3>Volunteer Application</h3><p class="muted">You must be signed in. Please log in as Youth, then submit.</p>
 <select id="vArea"><option>Tutoring &amp; Mentoring</option><option>Events &amp; Community Projects</option><option>Admin &amp; Digital Support</option><option>Wellness &amp; Peer Support</option></select>
 <select id="vAvail"><option>Weekends</option><option>Weekdays</option><option>School Holidays</option><option>Flexible</option></select>
 <input id="vPhone" placeholder="Phone number"><label><input type="checkbox" id="vConsent" style="width:auto" checked> I consent to POPIA storage of my details</label>
@@ -83,11 +83,30 @@
 <div class="card"><h3>Positive Young Minds</h3><p>📍 7 Rex Street, Roodepoort, 1724, Johannesburg, Gauteng, South Africa<br>📧 hello@positiveyoungminds.demo (Lab — replace with real)<br>📞 066 563 2663 (Lab)<br>🕐 Mon–Fri, 09:00–16:00<br><br><b>Scam safety:</b> We never ask you to pay to apply, volunteer or attend. If anyone asks for money in our name, it is a scam.</p></div></div></section>
 
 <!-- ACCOUNT -->
-<section class="section" id="account"><p class="eyebrow">My Account</p><h2>Login / Create an Account</h2><p class="muted">Admin accounts cannot be created here. Lab: youth@demo.co.za / provider@demo.co.za / admin@demo.co.za — Password: <b>Lab123!</b></p>
-<div class="grid"><div class="card"><h3>Login</h3><input id="liEmail" placeholder="Email" value="youth@demo.co.za"><input id="liPass" type="password" placeholder="Password" value="Lab123!"><button class="btn" style="width:100%" onclick="doLogin()">Login →</button><p><b>One-click demo:</b></p><div class="flex"><button class="btn btn-sm" onclick="quickLogin('youth')">Youth</button><button class="btn btn-teal btn-sm" onclick="quickLogin('provider')">Provider</button><button class="btn btn-blue btn-sm" onclick="quickLogin('admin')">Admin</button></div></div>
+<section class="section" id="account"><p class="eyebrow">My Account</p><h2>Login / Create an Account</h2><p class="muted">Lab accounts (for testing only): Youth: youth@positiveyoungminds.org.za / Provider: provider@positiveyoungminds.org.za / Admin: admin@positiveyoungminds.org.za — Passwords in SECURITY_LAB_GUIDE.md. Admin must change password every 30 days.</p>
+<div class="grid"><div class="card"><h3>Login</h3><input id="loginEmail" placeholder="Email" value="youth@positiveyoungminds.org.za"><input id="loginPass" type="password" placeholder="Password" value="PYM-Youth-2026!"><button class="btn" style="width:100%" onclick="doLogin()">Login →</button><p id="loginMsg"></p><p><b>One-click demo:</b></p><div class="flex"><button class="btn btn-sm" onclick="quickLogin('youth')">Youth</button><button class="btn btn-teal btn-sm" onclick="quickLogin('provider')">Provider</button><button class="btn btn-blue btn-sm" onclick="quickLogin('admin')">Admin</button></div></div>
 <div class="card"><h3>Create an Account</h3><select id="rRole"><option value="Youth">Young Person</option><option value="Provider">Provider / Organisation</option></select><input id="rFirst" placeholder="First name"><input id="rLast" placeholder="Last name"><input id="rEmail" placeholder="Email"><input id="rPass" type="password" placeholder="Password (min 6)"><select id="rProv"><option>Gauteng</option><option>Western Cape</option><option>KwaZulu-Natal</option><option>Eastern Cape</option><option>Limpopo</option><option>Mpumalanga</option><option>North West</option><option>Free State</option><option>Northern Cape</option></select><input id="rCity" placeholder="City / Town"><label><input type="checkbox" style="width:auto" checked> I consent to POPIA storage</label><button class="btn btn-teal" style="width:100%" onclick="doRegister()">Create Account</button></div></div>
 <div class="card" style="margin-top:14px"><h3>Application Info &amp; Career Guidance</h3><p><b>How to apply:</b> Account → Profile → Eligibility → Documents → Apply → Track. <b>CV:</b> Max 2 pages, PDF. <b>Motivation letter:</b> Why this opportunity, why you, what you’ll contribute. <b>Interview:</b> Research the org, prepare 3 questions, arrive early. <b>Scams:</b> No fee, no WhatsApp-only, no guaranteed job.</p></div></section>
 
 <div class="card" style="margin-top:16px"><h3>Contact Positive Young Minds (NPO)</h3><p>📍 7 Rex Street, Roodepoort, 1724, Johannesburg • 📧 positiveyoungmindsoffice@gmail.com • 📞 066 563 2663 • @ positiveyoungminds2025<br><b>Executive Director:</b> Mandilakhe Cqaka • <b>Services:</b> Mental Health Awareness and Youth Empowerment Conferences • <b>Always open</b></p></div><footer><b style="color:var(--ink)">POSITIVE YOUNG MINDS</b> • Strong Minds. Bright Futures. • © <span id="year"></span> Positive Young Minds • 7 Rex Street, Roodepoort, 1724, 7 Rex Street, Roodepoort, 1724 • positiveyoungmindsoffice@gmail.com • 066 563 2663 • POPIA compliant.</footer>
 </div><div class="toast" id="toast"></div>
-<script>async function doLogin(){const e=document.getElementById("loginEmail")?.value, p=document.getElementById("loginPass")?.value; const r=await loginSecure(e,p); document.getElementById("loginMsg").textContent=r.ok?"✅ Welcome, "+r.user.name+" — redirecting...":r.msg; if(r.ok) setTimeout(()=>location.href=r.user.role==="Admin"?"admin.html":"dashboard.html",600);} </script></body></html>
+<script src="assets/js/shared.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+async function doLogin(){
+  const e=document.getElementById("loginEmail")?.value;
+  const p=document.getElementById("loginPass")?.value;
+  const m=document.getElementById("loginMsg");
+  if(typeof loginSecure==="undefined"){ if(m) m.textContent="Error: shared.js did not load. Re-upload assets/js/shared.js and hard-refresh (Ctrl+Shift+R)."; return; }
+  const r=await loginSecure(e,p);
+  if(m) m.textContent=r.ok ? "✅ Welcome, "+r.user.name+" — redirecting..." : r.msg;
+  if(r.ok) setTimeout(()=>location.href=r.user.role==="Admin"?"admin.html":"dashboard.html",600);
+}
+async function quickLogin(role){
+  const map={youth:["youth@positiveyoungminds.org.za","PYM-Youth-2026!"],provider:["provider@positiveyoungminds.org.za","PYM-Provider-2026!"],admin:["admin@positiveyoungminds.org.za","PYM-Admin-2026!"]};
+  const [e,p]=map[role]||[];
+  document.getElementById("loginEmail").value=e;
+  document.getElementById("loginPass").value=p;
+  await doLogin();
+}
+</script></body></html>
